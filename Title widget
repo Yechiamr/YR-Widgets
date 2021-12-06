@@ -1,0 +1,68 @@
+<?php
+
+    if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+    }
+
+    class text2_widget extends \Elementor\Widget_Base {
+
+        public function get_name() {
+        return 'text2_widget';
+        }
+
+        public function get_title() {
+        return esc_html__( 'Text 2 Widget', 'text2_widget' );
+        }
+
+        public function get_icon() {
+        return 'eicon-text';
+        }
+
+        public function get_custom_help_url() {
+        return 'https://developers.elementor.com/widgets/';
+        }
+
+        public function get_categories() {
+        return [ 'general' ];
+        }
+
+        public function get_keywords() {
+        return [ 'text', 'text2' ];
+        }
+    
+
+    protected function register_controls() {
+
+        $this->start_controls_section(
+            'text_section',
+            [
+            'label' => esc_html__( 'text_section', 'text2_widget' ),
+            'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+            );
+            
+            $this->add_control(
+                'yrtext',
+                [
+                    'label' => esc_html__( 'Title', 'text2_widget' ),
+                    'type' => \Elementor\Controls_Manager::TEXT,
+                    'default' => esc_html__( 'Default title', 'text2_widget' ),
+                    'placeholder' => esc_html__( 'Type your title here', 'text2_widget' ),
+                ]
+            );
+
+            $this->end_controls_section();
+        }
+    
+
+    protected function render() {
+            $settings = $this->get_settings_for_display();
+            echo '<h2>' . $settings['yrtext'] . '<h2>';
+    }
+
+    protected function content_template() {
+		?>
+        <h2>{{{ settings.yrtext }}}</h2>
+		<?php
+	}
+}
