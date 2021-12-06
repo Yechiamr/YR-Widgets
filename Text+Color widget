@@ -1,0 +1,84 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+exit; // Exit if accessed directly.
+}
+class text_color_widget extends \Elementor\Widget_Base {
+
+public function get_name() {
+return 'text_color_widget';
+}
+
+public function get_title() {
+return esc_html__( 'Text with color', 'text_color_widget' );
+}
+
+public function get_icon() {
+return 'eicon-text';
+}
+
+public function get_custom_help_url() {
+return 'https://developers.elementor.com/widgets/';
+}
+
+public function get_categories() {
+return [ 'general' ];
+}
+
+public function get_keywords() {
+return [ 'text', 'color' ];
+}
+
+protected function register_controls() {
+
+    $this->start_controls_section(
+        'content_section',
+        [
+        'label' => esc_html__( 'Content section', 'text_color_widget' ),
+        'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+        ]
+        );
+
+    $this->add_control(
+        'ytext',
+        [
+        'label' => esc_html__( 'Text', 'text_color_widget' ),
+        'type' => \Elementor\Controls_Manager::TEXT,
+        'default' => esc_html__( 'Default text', 'text_color_widget' ),
+        'placeholder' => esc_html__( 'Type your text here', 'text_color_widget' ),
+        ]
+        );
+
+    $this->end_controls_section();
+
+    $this->start_controls_section(
+        'style_section',
+        [
+        'label' => esc_html__( 'Color', 'text_color_widget' ),
+        'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+        ]
+        );
+        
+        $this->add_control(
+            'ytext_color',
+            [
+            'label' => esc_html__( 'Text Color', 'text_color_widget' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                          '{{WRAPPER}} .color' => 'color: {{VALUE}}',
+                  ],
+                ]
+            );
+
+    $this->end_controls_section();
+
+    }
+    protected function render() {
+        $settings = $this->get_settings_for_display();
+        ?>
+          <p class="color">
+            <?php echo $settings['ytext']; ?>
+        </p>
+        <?php
+    }
+  
+}
