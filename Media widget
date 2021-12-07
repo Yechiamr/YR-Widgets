@@ -1,12 +1,45 @@
 <?php
-class Elementor_Test_Widget extends \Elementor\Widget_Base {
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+class media_widget extends \Elementor\Widget_Base {
+
+    public function get_name() {
+		return 'media_widget';
+	}
+
+	
+	public function get_title() {
+		return esc_html__( 'media widget', 'media_widget' );
+	}
+
+	
+	public function get_icon() {
+		return 'eicon-image';
+	}
+
+	
+	public function get_custom_help_url() {
+		return 'https://developers.elementor.com/widgets/';
+	}
+
+	public function get_categories() {
+		return [ 'general' ];
+	}
+
+	
+	public function get_keywords() {
+		return [ 'image', 'media' ];
+	}
 
 	protected function register_controls() {
 
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => esc_html__( 'Content', 'plugin-name' ),
+				'label' => esc_html__( 'Content', 'media_widget' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -14,7 +47,7 @@ class Elementor_Test_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'image',
 			[
-				'label' => esc_html__( 'Choose Image', 'plugin-name' ),
+				'label' => esc_html__( 'Choose Image', 'media_widget' ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
