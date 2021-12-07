@@ -1,0 +1,22 @@
+<?php
+        /**
+        * Plugin Name: Offcial Widget Name
+        * Description: The description will appear on WP admin 
+        * Plugin URI:  https://elementor.com/
+        * Version:     1.0.0
+        * Author:      Developer Name
+        * Author URI:  https://developers.elementor.com/
+        * Text Domain: widget_file_name
+        *
+        * Elementor tested up to: 3.3.0
+        * Elementor Pro tested up to: 3.3.0
+        */
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit; // Exit if accessed directly.
+    }
+
+    function register_widget_file_name() {
+        require_once( __DIR__ . '/widgets/widget_file_name.php' );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \widget_file_name() );
+    }
+add_action( 'elementor/widgets/widgets_registered', 'register_widget_file_name' );
