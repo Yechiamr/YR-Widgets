@@ -66,7 +66,7 @@ class media_widget extends \Elementor\Widget_Base {
 		echo '<img src="' . esc_url( $settings['image']['url'] ) . '" alt="">';
 
 		// Get image by id
-		echo wp_get_attachment_image( $settings['image']['id'], 'thumbnail' );
+		// echo wp_get_attachment_image( $settings['image']['id'], 'thumbnail' );
 	}
 
 	protected function content_template() {
