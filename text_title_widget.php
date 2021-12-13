@@ -56,16 +56,7 @@ class text_title_widget extends \Elementor\Widget_Base {
 				'placeholder' => esc_html__( 'Type your text here', 'text_title_widget' ),
 			]
 		);
-        $this->end_controls_section();
-
-
-		$this->start_controls_section(
-			'content_section',
-			[
-				'label' => esc_html__( 'Title Content', 'text_title_widget' ),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-			]
-		);
+    
 
 		$this->add_control(
 			'yrtitle',
