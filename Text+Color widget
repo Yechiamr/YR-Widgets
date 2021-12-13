@@ -39,7 +39,7 @@ protected function register_controls() {
         );
 
     $this->add_control(
-        'ytext',
+        'text',
         [
         'label' => esc_html__( 'Text', 'text_color_widget' ),
         'type' => \Elementor\Controls_Manager::TEXT,
@@ -59,12 +59,12 @@ protected function register_controls() {
         );
         
         $this->add_control(
-            'ytext_color',
+            'color',
             [
             'label' => esc_html__( 'Text Color', 'text_color_widget' ),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                          '{{WRAPPER}} .color' => 'color: {{VALUE}}',
+                          '{{WRAPPER}} .ycolor' => 'color: {{VALUE}}',
                   ],
                 ]
             );
@@ -75,9 +75,12 @@ protected function register_controls() {
     protected function render() {
         $settings = $this->get_settings_for_display();
         ?>
-          <p class="color">
-            <?php echo $settings['ytext']; ?>
-        </p>
+         <div class="ycolor">
+                    <?php 
+                        // render text
+                        echo '<p>' . $settings['text'] . '</p>';
+                    ?>
+                </div>
         <?php
     }
   
