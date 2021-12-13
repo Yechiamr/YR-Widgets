@@ -1,4 +1,4 @@
-<?php
+t<?php
 
     if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
@@ -11,7 +11,7 @@
         }
 
         public function get_title() {
-        return esc_html__( 'Text 2 Widget', 'text2_widget' );
+        return esc_html__( 'Title no style', 'text2_widget' );
         }
 
         public function get_icon() {
@@ -36,7 +36,7 @@
         $this->start_controls_section(
             'text_section',
             [
-            'label' => esc_html__( 'text_section', 'text2_widget' ),
+            'label' => esc_html__( 'Content', 'text2_widget' ),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
             );
