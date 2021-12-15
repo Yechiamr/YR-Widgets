@@ -1,37 +1,41 @@
 <?php
 
-class fixed_text_widget extends \Elementor\Widget_Base {
+if ( ! defined( 'ABSPATH' ) ) {
+        exit; // Exit if accessed directly.
+    }
+    
+    class fixed_text_widget extends \Elementor\Widget_Base {
 
-public function get_name() {
-return 'fixed_text_widget';
-}
+    public function get_name() {
+    return 'fixed_text_widget';
+    }
 
-public function get_title() {
-return esc_html__( 'Fixed Text', 'fixed_text_widget' );
-}
+    public function get_title() {
+    return esc_html__( 'Fixed Text', 'fixed_text_widget' );
+    }
 
-public function get_icon() {
-return 'eicon-text';
-}
+    public function get_icon() {
+    return 'eicon-text';
+    }
 
-public function get_custom_help_url() {
-return 'https://developers.elementor.com/widgets/';
-}
+    public function get_custom_help_url() {
+    return 'https://developers.elementor.com/widgets/';
+    }
 
-public function get_categories() {
-return [ 'general' ];
-}
+    public function get_categories() {
+    return [ 'general' ];
+    }
 
-public function get_keywords() {
-return [ 'text', 'fixed' ];
-}
+    public function get_keywords() {
+    return [ 'text', 'fixed' ];
+    }
 
-protected function render() {
-    ?>
+    protected function render() {
+         ?>
 
-    <p> This text is fixed, you can change it in the code only </p>
+         <p> This text is fixed, you can change it in the code only </p>
 
-    <?php
-}
+         <?php
+    }
 }
 
