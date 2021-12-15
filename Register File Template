@@ -6,7 +6,7 @@
         * Version:     1.0.0
         * Author:      Developer Name
         * Author URI:  https://developers.elementor.com/
-        * Text Domain: widget_name
+        * Text Domain: register_file_name
         *
         * Elementor tested up to: 3.3.0
         * Elementor Pro tested up to: 3.3.0
@@ -15,8 +15,13 @@
         exit; // Exit if accessed directly.
     }
 
-    function register_widget_file_name() {
-        require_once( __DIR__ . '/widgets/widget_file_name.php' );
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \widget_file_name() );
-    }
-add_action( 'elementor/widgets/widgets_registered', 'register_widget_file_name' );
+    function register_widgets_file_name( $widgets_manager ) {
+
+	require_once( __DIR__ . '/widgets/widget1_file_name.php' );
+	require_once( __DIR__ . '/widgets/widget2_file_name.php' );
+
+	$widgets_manager->register( new \widget1_file_name() );
+	$widgets_manager->register( new \widget2_file_name() );
+
+}
+add_action( 'elementor/widgets/register', 'register_widgets_file_name' );
