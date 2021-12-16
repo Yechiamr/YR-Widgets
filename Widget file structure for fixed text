@@ -1,36 +1,39 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-        exit; // Exit if accessed directly.
-    }
-    
-class widget_file_namet extends \Elementor\Widget_Base {
+        if ( ! defined( 'ABSPATH' ) ) {
+                exit; // Exit if accessed directly.
+            }
 
-public function get_name() {
-    return 'widget_file_name';
-    }
+        class widget_file_namet extends \Elementor\Widget_Base {
 
-    public function get_title() {
-    return esc_html__( 'Widget Name', 'widget_file_name' );
-    }
+        public function get_name() {
+            return 'widget_file_name';
+            }
 
-    public function get_icon() {
-    return 'eicon-code';
-    }
+            public function get_title() {
+            return esc_html__( 'Widget Name', 'widget_file_name' );
+            }
 
-    public function get_custom_help_url() {
-    return 'https://developers.elementor.com/widgets/';
-    }
+            public function get_icon() {
+            return 'eicon-code';
+            }
 
-    public function get_categories() {
-    return [ 'general' ];
-    }
+            public function get_custom_help_url() {
+            return 'https://developers.elementor.com/widgets/';
+            }
 
-    public function get_keywords() {
-    return [ 'keyword1', 'keyword2' ];
-    }
+            public function get_categories() {
+            return [ 'general' ];
+            }
 
-protected function render() {
- <p> text </p>
+            public function get_keywords() {
+            return [ 'keyword1', 'keyword2' ];
+            }
+
+        protected function render() {
+        
+        ?>
+            <p> text </p>
+        <?php
 }
 }
