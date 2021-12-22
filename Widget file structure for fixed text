@@ -19,11 +19,11 @@
             }
 
             public function get_custom_help_url() {
-            return 'https://developers.elementor.com/widgets/';
+            return 'https://link to plugin website';
             }
 
             public function get_categories() {
-            return [ 'general' ];
+            return [ 'choose a category' ];
             }
 
             public function get_keywords() {
