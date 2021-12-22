@@ -1,27 +1,25 @@
 <?php
         /**
         * Plugin Name: Offcial Widget Name
-        * Description: The description will appear on WP admin panel 
-        * Plugin URI:  https://elementor.com/
-        * Version:     1.0.0
+        * Description: A short description that will appear on WP admin panel 
+        * Plugin URI:  https:// A link to the widget's website
+        * Version:     the version number
         * Author:      Developer Name
-        * Author URI:  https://developers.elementor.com/
+        * Author URI:  https:// A link to the widget's website
         * Text Domain: register_file_name
         *
-        * Elementor tested up to: 3.3.0
-        * Elementor Pro tested up to: 3.3.0
+        * Elementor tested up to: The latest compatible Elementor version
+        * Elementor Pro tested up to: The latest compatible Elementor Pro version
         */
+	
     if ( ! defined( 'ABSPATH' ) ) {
         exit; // Exit if accessed directly.
     }
 
-    function register_widgets_file_name( $widgets_manager ) {
+    function register_a_unique_name( $widgets_manager ) {
 
 	require_once( __DIR__ . '/widgets/widget1_file_name.php' );
-	require_once( __DIR__ . '/widgets/widget2_file_name.php' );
-
 	$widgets_manager->register( new \widget1_file_name() );
-	$widgets_manager->register( new \widget2_file_name() );
 
 }
-add_action( 'elementor/widgets/register', 'register_widgets_file_name' );
+add_action( 'elementor/widgets/register', 'the_function_unique_name' );
