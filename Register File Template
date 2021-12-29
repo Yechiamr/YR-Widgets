@@ -19,7 +19,9 @@
     function register_a_unique_name( $widgets_manager ) {
 
 	require_once( __DIR__ . '/widgets/widget1_file_name.php' );
+	require_once( __DIR__ . '/widgets/widget2_file_name.php' );
+	
 	$widgets_manager->register( new \widget1_file_name() );
-
+        $widgets_manager->register( new \widget2_file_name() );
 }
 add_action( 'elementor/widgets/register', 'the_function_unique_name' );
