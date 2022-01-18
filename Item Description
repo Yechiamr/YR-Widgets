@@ -1,0 +1,356 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+        exit; // Exit if accessed directly.
+}
+
+class description_widget extends \Elementor\Widget_Base {
+
+        public function get_name() {
+        return 'description_widget';
+        }
+
+        public function get_title() {
+        return esc_html__( 'Item Description', 'item-display' );
+        }
+
+        public function get_icon() {
+        return 'eicon-text';
+        }
+
+        public function get_custom_help_url() {
+        return 'https://www.elementor.com';
+        }
+
+        public function get_categories() {
+        return [ 'general' ];
+        }
+
+        public function get_keywords() {
+        return [ 'item', 'description' ];
+        }
+
+
+        protected function register_controls() {  
+
+                
+                $this->start_controls_section(
+                'text_section',
+                        [
+                        'label' => esc_html__( 'Description', 'item-display' ),
+                        'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+                        ]
+                );
+                
+
+                $this->add_control(
+		'item_description',
+		        [
+			'label' => esc_html__( 'Description', 'item-display' ),
+			'type' => \Elementor\Controls_Manager::TEXTAREA,
+			'rows' => 10,
+			'placeholder' => esc_html__( 'Type your description here', 'item-display' ),
+		        ]
+		);
+                
+                $this->end_controls_section();
+                
+                
+                $this->start_controls_section(
+                'image_section',
+                        [
+                        'label' => esc_html__( 'Image', 'item-display' ),
+                        'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+                        ]
+                );
+
+                $this->add_control(
+		'image',
+	        	[
+			'label' => esc_html__( 'Choose Image', 'item-display' ),
+			'type' => \Elementor\Controls_Manager::MEDIA,
+			'default' => [
+				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			]
+		);
+                
+                $this->add_group_control(
+			\Elementor\Group_Control_Image_Size::get_type(),
+			[
+			'name' => 'thumbnail', 
+			'exclude' => ['custom'],  //deleted 'custom'
+			'include' => [],
+			'default' => 'large', // changed from 'large'
+			]
+		);
+                $this->end_controls_section();
+
+                $this->start_controls_section(
+                'title_section',
+                        [
+                        'label' => esc_html__( 'Title', 'item-display' ),
+                        'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+                        ]
+                );
+
+                        
+                $this->add_control(
+		'description_title',
+			[
+			'label' => esc_html__( 'Title', 'item-display' ),
+			'type' => \Elementor\Controls_Manager::TEXT,
+			'placeholder' => esc_html__( 'Type your title here', 'item-display' ),
+			]
+		);
+                        
+                $this->end_controls_section();
+                    
+
+                //Style Tab with 3 sections:
+                
+                $this->start_controls_section(
+                'text_style_section',
+                        [
+                        'label' => esc_html__( 'Text Style', 'item-display' ),
+                        'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                        ]
+                );
+                
+                $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+			'name' => 'text_typography',
+			'selector' => '{{WRAPPER}} .text-style',
+			]
+		);
+
+                $this->add_control(
+			'text_alignment',
+			[
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'label' => esc_html__( 'Alignment', 'item-display' ),
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'item-display' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'item-display' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'item-display' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'default' => 'center',
+                                'selector' => '{{WRAPPER}} .text-style',
+			]
+		);
+/**  
+                $this->add_responsive_control(
+		'text_padding',
+			[
+			'type' => \Elementor\Controls_Manager::DIMENSIONS,
+			'label' => esc_html__( 'Padding', 'item-display' ),
+			'size_units' => [ 'px', 'em', '%' ],
+			'selectors' => [
+				'{{WRAPPER}} .text-style' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+*/                
+                $this->add_control(
+			'text_color',
+			[
+				'label' => esc_html__( 'Text Color', 'item-display' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .text-style' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+                $this->add_group_control(
+			\Elementor\Group_Control_Text_Shadow::get_type(),
+			[
+				'name' => 'text_shadow',
+				'label' => esc_html__( 'Text Shadow', 'item-display' ),
+				'selector' => '{{WRAPPER}} .text-style',
+			]
+		);
+
+                $this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+			'name' => 'border',
+			'label' => esc_html__( 'Text Border', 'item-display' ),
+			'selector' => '{{WRAPPER}} .text-style',
+			]
+		);
+
+                $this->end_controls_section();
+                    
+                $this->start_controls_section(
+                'image_style_section',
+                        [
+                        'label' => esc_html__( 'Image Style', 'item-display' ),
+                        'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                        ]
+                );
+                
+                $this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+			'name' => 'border',
+			'label' => esc_html__( 'Image Border', 'item-display' ),
+			'selector' => '{{WRAPPER}} .image-style',
+			]
+		);
+
+                $this->add_group_control(
+			Group_Control_Css_Filter::get_type(),
+			[
+				'name' => 'custom_css_filters',
+				'selector' => '{{WRAPPER}} .image-style',
+			]
+		);
+                
+                $this->end_controls_section();
+                
+                $this->start_controls_section(
+                'title_style_section',
+                        [
+                        'label' => esc_html__( 'Title Style', 'item-display' ),
+                        'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                        ]
+                );
+                        
+                $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+			'name' => 'content_typography',
+			'selector' => '{{WRAPPER}} .title-style',
+			]
+		);
+
+                $this->add_control(
+			'title_alignment',
+			[
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'label' => esc_html__( 'Alignment', 'item-display' ),
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'item-display' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'item-display' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'item-display' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'default' => 'center',
+                                'selector' => '{{WRAPPER}} .title-style',
+			]
+		);
+/**
+                $this->add_responsive_control(
+		'title_padding',
+			[
+			'type' => \Elementor\Controls_Manager::DIMENSIONS,
+			'label' => esc_html__( 'Title Padding', 'item-display' ),
+			'size_units' => [ 'px', 'em', '%' ],
+			'selectors' => [
+				'{{WRAPPER}} .title-style' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+ */               
+                $this->add_control(
+			'title_color',
+			[
+				'label' => esc_html__( 'Title Color', 'item-display' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .title-style' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+                $this->add_group_control(
+			\Elementor\Group_Control_Text_Shadow::get_type(),
+			[
+				'name' => 'title_shadow',
+				'label' => esc_html__( 'Title Shadow', 'item-display' ),
+				'selector' => '{{WRAPPER}} .title-style',
+			]
+		);
+
+                $this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+			'name' => 'title_border',
+			'label' => esc_html__( 'Title Border', 'item-display' ),
+			'selector' => '{{WRAPPER}} .title-style',
+			]
+		);        
+                $this->end_controls_section();
+        }
+
+
+        protected function render() {
+
+                $settings = $this->get_settings_for_display();
+                ?>
+                        <div class="text-style"> 
+                                <?php echo $settings['item_description']; ?>
+                        </div>
+
+                        <div class="image-style"> 
+                                echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' );
+                        </div>
+
+                        <div class="title-style"> 
+                                <?php echo $settings['description_title']; ?>
+                        </div>
+                <?php
+        }
+        
+
+        protected function content_template() {
+
+                ?>
+                        <div class="text-style"> 
+                                <# 
+                                 {{ settings.item_description }} 
+                                #>
+                        </div>
+
+                        <div class="image-style"> 
+                                <# 
+                                var image = {
+                                        id: settings.image.id,
+                                        url: settings.image.url,
+                                        size: settings.thumbnail_size,
+                                        dimension: settings.thumbnail_custom_dimension,
+                                        model: view.getEditModel()
+                                };
+                                var image_url = elementor.imagesManager.getImageUrl( image );
+                                #>
+                                <img src="{{{ image_url }}}" />
+                        </div>
+
+                        <div class="title-style"> 
+                                <# 
+                                 {{ settings.description_title }} 
+                                #>
+                        </div>
+
+                <?php
+        }
+}
